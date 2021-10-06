@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task-one">
     <table>
       <caption>
         Таблица
@@ -153,6 +153,12 @@ export default {
 </script>
 
 <style>
+.task-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 td {
   text-align: center;
 }
