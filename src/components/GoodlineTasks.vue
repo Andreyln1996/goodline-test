@@ -7,7 +7,7 @@
     </router-link>
 
     <router-link
-        :to="{name: 'TaskOne'}"
+        :to="{name: 'TaskTwo'}"
         class="goodline-task__link">
       2 задание
     </router-link>
@@ -30,10 +30,14 @@ export default {
   align-items: center;
 
   &__link {
-    color: red;
+    color: #049999;
     text-decoration: none;
     text-transform: uppercase;
     margin: 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
 }
