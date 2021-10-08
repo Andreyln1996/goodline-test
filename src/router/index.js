@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
-import TaskOne from "@/components/TaskOne/TaskOne";
-import GoodlineTasks from "@/components/GoodlineTasks";
+import TaskOne from "../components/TaskOne/TaskOne";
+import GoodlineTasks from "../components/GoodlineTasks";
 import TaskTwo from "../components/TaskTwo/TaskTwo";
 
 export default new VueRouter({

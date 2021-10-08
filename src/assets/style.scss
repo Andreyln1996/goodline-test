@@ -10,6 +10,10 @@ html, body {
   box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+}
+
 
 
 //@mixin roboto-condensed_36-700 {
@@ -28,17 +32,25 @@ html, body {
 //  line-height: 37px;
 //}
 //
-//@mixin roboto_20-bold {
-//  font-family: 'Roboto', sans-serif;
-//  font-style: normal;
-//  font-weight: bold;
-//  @include adaptive('font-size', 20, 14);
-//  line-height: 23px;
-//  color: #2E3134;
-//}
+@mixin roboto_20-bold {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  color: #313334;
+}
+
+@mixin bg-gradient_green {
+  background: linear-gradient(180deg, #8CB928 0%, #45AE4D 100%);
+}
 
 @mixin adaptive($property, $minSize, $maxSize) {
   #{$property}: calc(#{$minSize + px} + (#{$maxSize - $minSize}) * ((100vw - 375px) / (960 - 375)));
+}
+
+@mixin adaptive__2($property, $minSize, $maxSize, $minSize2, $maxSize2) {
+  #{$property}: calc(#{$minSize + px} + (#{$maxSize - $minSize}) * ((100vw - 375px) / (960 - 375))) calc(#{$minSize2 + px} + (#{$maxSize2 - $minSize2}) * ((100vw - 375px) / (960 - 375)));
 }
 
 ._text {
@@ -48,6 +60,16 @@ html, body {
   font-size: 20px;
   line-height: 23px;
   color: #2E3134;
+}
+
+._title-text {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+  color: #313334;
 }
 
 @media (max-width: 960px) {
