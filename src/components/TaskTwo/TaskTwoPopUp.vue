@@ -1,30 +1,56 @@
 <template>
-  <div class="task-two-pop-up">
-    <div class="task-two-pop-up__cross">
-      <img
-          src="../../img/pop-up__cross.svg"
-          alt="cross"/>
-    </div>
+  <transition name="fade">`
     <div
-        v-for="(option, i) in options"
-        :key="i"
-        class="task-two-pop-up__block">
-      <div class="task-two-pop-up__bg-icon">
-        <img
-            class="task-two-pop-up__icon"
-            v-if="option.icon"
-            :src="require(`../../img/pop-up__${option.icon}.svg`)"
-            alt="icon">
+        v-if="open"
+        :class="{'task-two-pop-up_right': pop_up === 1,
+                 'task-two-pop-up_left': pop_up === 2}"
+        class="task-two-pop-up">
+      <div class="task-two-pop-up__container">
+        <div
+            v-for="(option, i) in selectedOption"
+            :key="i"
+            class="task-two-pop-up__block">
+          <div class="task-two-pop-up__bg-icon">
+            <img
+                class="task-two-pop-up__icon"
+                v-if="option.icon"
+                :src="require(`../../img/pop-up__${option.icon}.svg`)"
+                alt="icon">
+          </div>
+          {{ option.text }}
+        </div>
       </div>
-      {{ option.text }}
-    </div>
-  </div>
 
+      <div
+          :class="{'task-two-pop-up__cross_right': pop_up === 1,
+                  'task-two-pop-up__cross_left': pop_up === 2}"
+          class="task-two-pop-up__cross"
+          @click="$emit('close')">
+        <img
+            src="../../img/pop-up__cross.svg"
+            alt="cross"/>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
   name: "TaskTwoPopUp",
+  props: {
+    pop_up: Number,
+    open: Boolean,
+  },
+
+  computed: {
+    selectedOption() {
+      if (this.pop_up === 1) {
+        return this.options
+      } else if (this.pop_up === 2) {
+        return this.options_two
+      } else return ''
+    }
+  },
 
   data() {
     return {
@@ -58,6 +84,38 @@ export default {
           text: 'Длина кабеля 1.5\u00A0метра',
           icon: null
         },
+      ],
+
+      options_two: [
+        {
+          text: 'Уведомление на телефон о\u00A0движении',
+          icon: 'go'
+        },
+
+        {
+          text: 'Хранение данных на защищенных серверах',
+          icon: 'save-data'
+        },
+
+        {
+          text: 'Совместный доступ  у\u00A0членов семьи\n',
+          icon: 'family'
+        },
+
+        {
+          text: 'Скачивание/удаление архивных записей',
+          icon: 'mobile'
+        },
+
+        {
+          text: 'Доступ из\u00A0любой точки\u00A0мира',
+          icon: 'map'
+        },
+
+        {
+          text: 'Уведомление о приходе «Домашних»',
+          icon: 'bell'
+        },
       ]
     }
   }
@@ -68,21 +126,32 @@ export default {
 @import "src/assets/style";
 
 .task-two-pop-up {
-  margin-left: 87px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  transition: 0.4s;
   max-width: 720px;
-  padding: 40px;
-  background: linear-gradient(180deg, #8CB928 0%, #45AE4D 100%);
-  border-radius: 18px;
+
+  &_right {
+    margin-left: 87px;
+  }
+
+  &_left {
+    margin-right: 87px;
+  }
+
+  &__container {
+    padding: 40px;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    @include bg-gradient_green
+  }
+
 
   &__cross {
     margin: auto;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -87px;
     width: 52px;
     height: 52px;
     border-radius: 50%;
@@ -91,6 +160,14 @@ export default {
     align-items: center;
     justify-content: center;
     @include bg-gradient_green;
+
+    &_right {
+      left: -87px;
+    }
+
+    &_left {
+      right: -87px;
+    }
   }
 
   &__block {
@@ -100,7 +177,9 @@ export default {
     background-color: white;
     border-radius: 18px;
     //max-width: 311px;
-    @include roboto_20-bold;
+    font-size: 20px;
+    line-height: 23px;
+    @include roboto_700;
   }
 
   &__bg-icon {
@@ -116,21 +195,38 @@ export default {
     box-shadow: 0 10px 40px #45AE4D;
   }
 
-  &__icon {
-    width: 60%;
-  }
+  //&__icon {
+  //  width: 60%;
+  //}
 
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
   .task-two-pop-up {
+    background-color: white;
+
+    &__container {
+      grid-template-columns: 1fr;
+    }
+
     margin-left: 0;
     width: 100%;
     max-width: none;
-    grid-template-columns: 1fr;
 
     &__cross {
-      display: none;
+      position: static;
+      margin: 16px auto;
+      //top: calc(100% + 68px);
+      //left: 0;
+      //right: 0;
     }
 
   }
@@ -138,12 +234,15 @@ export default {
 
 @media (max-width: 960px) {
   .task-two-pop-up {
-    @include adaptive('padding', 28, 40);
+    &__container {
+      @include adaptive('padding', 28, 40);
 
-    &__bg-icon {
-      @include adaptive('min-width', 114, 126);
-      @include adaptive('height', 114, 126)
     }
+
+    //&__bg-icon {
+    //  @include adaptive('max-width', 114, 126);
+    //  @include adaptive('height', 114, 126)
+    //}
   }
 
 }

@@ -1,18 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-html, body {
-  width: 100%;
-  height: 100%;
-  min-width: 320px;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-p {
-  margin: 0;
-}
 
 
 
@@ -32,13 +20,16 @@ p {
 //  line-height: 37px;
 //}
 //
-@mixin roboto_20-bold {
+
+@mixin roboto_700 {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 23px;
-  color: #313334;
+  font-weight: 700;
+}
+@mixin roboto_400 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 @mixin bg-gradient_green {

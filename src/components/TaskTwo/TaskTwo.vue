@@ -17,12 +17,22 @@
       </div>
     </section>
 
-    <section class="task-two__block-info info-block">
-      <TaskTwoPopUp class="info-block__pop-up"/>
+    <section
+
+        class="task-two__block-info info-block">
+      <TaskTwoPopUp
+          :open="open"
+          :pop_up="pop_up"
+          :class="{'info-block__pop-up_right': pop_up === 1,
+                   'info-block__pop-up_left': pop_up === 2}"
+          class="info-block__pop-up"
+          @close="open = null"/>
       <div
           v-for="i in 2"
           :key="i"
-          class="info-block__block-speaker">
+          :class="{'info-block__block-speaker_grey': open}"
+          class="info-block__block-speaker"
+          @click="actionSet(i)">
         <img
             class="info-block__speaker"
             src="../../img/info-block__speaker.png"
@@ -42,19 +52,33 @@
             v-for="i in 4"
             :key="i"
             class="buy-block__card">
-
         </div>
       </div>
     </section>
+    <TaskTwoInputPhone class="task-two__block-input"/>
   </div>
 </template>
 
 <script>
 import TaskTwoPopUp from "./TaskTwoPopUp";
+import TaskTwoInputPhone from "./TaskTwoInputPhone";
 
 export default {
   name: "TaskTwo",
-  components: {TaskTwoPopUp}
+  components: {TaskTwoInputPhone, TaskTwoPopUp},
+  data() {
+    return {
+      pop_up: null,
+      open: null,
+    }
+  },
+
+  methods: {
+    actionSet(i) {
+      this.pop_up = i
+      this.open = true
+    }
+  }
 }
 </script>
 
@@ -77,6 +101,14 @@ export default {
 
   &__block-info {
     margin-bottom: 103px;
+  }
+
+  &__block-buy {
+    margin-bottom: 107px;
+  }
+
+  &__block-input {
+    margin: 0 auto 124px auto;
   }
 }
 
@@ -150,17 +182,31 @@ export default {
   &__pop-up {
     position: absolute;
     z-index: 999;
-    right: 0;
-    top: -37px;
+
+    &_right {
+      right: 0;
+      top: -37px;
+    }
+
+    &_left {
+      left: 0;
+      top: -37px;
+    }
   }
 
   &__block-speaker {
+    transition: 0.2s;
     cursor: pointer;
     display: flex;
     justify-content: center;
     padding: 80px 90px;
     background: linear-gradient(180deg, #8CB928 0%, #45AE4D 100%);
     border-radius: 18px;
+
+    &_grey {
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
   }
 
   &__speaker {
@@ -198,20 +244,30 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .task-two {
+    &__block-input {
+      margin: 0 5px;
+    }
+  }
   .info-block {
     &__signature {
       display: none;
     }
+
+    &__pop-up {
+      position: fixed;
+      height: 100%;
+      overflow-y: scroll;
+      top: 0;
+    }
   }
 
   .buy-block {
-
     &__grid-container {
       grid-template-columns: repeat(2, 1fr);
-      //@include adaptive__2('padding', 0, 0, 21, 0);
-      //@include adaptive('gap', 15, 35);
     }
   }
+
 }
 
 @media (max-width: 960px) {
@@ -224,6 +280,10 @@ export default {
 
     &__block-info {
       @include adaptive('margin-bottom', 30, 103);
+    }
+
+    &__block-buy {
+      @include adaptive('margin-bottom', 60, 109);
     }
   }
 
