@@ -56,16 +56,21 @@
       </div>
     </section>
     <TaskTwoInputPhone class="task-two__block-input"/>
+    <TaskTwoReviews class="task-two__block-reviews"/>
   </div>
 </template>
 
 <script>
 import TaskTwoPopUp from "./TaskTwoPopUp";
 import TaskTwoInputPhone from "./TaskTwoInputPhone";
+import TaskTwoReviews from "./TaskTwoReviews";
 
 export default {
   name: "TaskTwo",
-  components: {TaskTwoInputPhone, TaskTwoPopUp},
+  components: {
+    TaskTwoReviews,
+    TaskTwoInputPhone, TaskTwoPopUp
+  },
   data() {
     return {
       pop_up: null,
@@ -86,7 +91,8 @@ export default {
 @import "src/assets/style";
 
 .task-two {
-  margin: 40px auto 0 auto;
+  margin: 0 auto;
+  padding: 40px 0 190px 0;
   //width: 100%;
   max-width: 960px;
   height: 100%;
@@ -110,6 +116,10 @@ export default {
   &__block-input {
     margin: 0 auto 124px auto;
   }
+
+  //&__block-reviews {
+  //  margin: 0 auto;
+  //}
 }
 
 
@@ -127,11 +137,9 @@ export default {
     display: flex;
     align-items: end;
     margin-left: 16.6px;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 700;
     font-size: 32px;
     line-height: 100%;
+    @include roboto-condensed_700
   }
 
   &__text {
@@ -245,10 +253,16 @@ export default {
 
 @media (max-width: 768px) {
   .task-two {
+    padding: 0 0 52px 0;
     &__block-input {
       margin: 0 5px;
     }
+
+    &__block-reviews {
+      display: none;
+    }
   }
+
   .info-block {
     &__signature {
       display: none;
