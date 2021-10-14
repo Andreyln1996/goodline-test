@@ -176,7 +176,6 @@ export default {
     align-items: center;
     background-color: white;
     border-radius: 18px;
-    //max-width: 311px;
     font-size: 20px;
     line-height: 23px;
     @include roboto_700;
@@ -194,10 +193,6 @@ export default {
     background: linear-gradient(180deg, #8BB928 0%, #45AE4D 100%);
     box-shadow: 0 10px 40px #45AE4D;
   }
-
-  //&__icon {
-  //  width: 60%;
-  //}
 
 }
 
@@ -224,11 +219,7 @@ export default {
     &__cross {
       position: static;
       margin: 16px auto;
-      //top: calc(100% + 68px);
-      //left: 0;
-      //right: 0;
     }
-
   }
 }
 
@@ -236,15 +227,8 @@ export default {
   .task-two-pop-up {
     &__container {
       @include adaptive('padding', 28, 40);
-
     }
-
-    //&__bg-icon {
-    //  @include adaptive('max-width', 114, 126);
-    //  @include adaptive('height', 114, 126)
-    //}
   }
-
 }
 
 </style>

@@ -1,29 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-
-
-
-
 @mixin roboto-condensed_700 {
   font-family: 'Roboto Condensed', sans-serif;
   font-style: normal;
   font-weight: 700;
 }
-//
-//@mixin robot_32-700 {
-//  font-family: 'Roboto', sans-serif;
-//  font-style: normal;
-//  font-weight: 700;
-//  font-size: 32px;
-//  line-height: 37px;
-//}
-//
 
 @mixin roboto_700 {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 700;
 }
+
 @mixin roboto_400 {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -42,30 +30,5 @@
   #{$property}: calc(#{$minSize + px} + (#{$maxSize - $minSize}) * ((100vw - 375px) / (960 - 375))) calc(#{$minSize2 + px} + (#{$maxSize2 - $minSize2}) * ((100vw - 375px) / (960 - 375)));
 }
 
-._text {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 23px;
-  color: #2E3134;
-}
-
-._title-text {
-  font-family: Roboto Condensed, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  text-align: center;
-  color: #313334;
-}
-
-@media (max-width: 960px) {
-  ._text {
-    @include adaptive('font-size', 12, 20);
-    @include adaptive('line-height', 14, 23);
-  }
-}
 
 

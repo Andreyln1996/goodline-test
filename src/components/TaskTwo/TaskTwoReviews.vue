@@ -16,14 +16,12 @@
                     task-two-reviews__circle_middle">
           <div class="task-two-reviews__circle
                     task-two-reviews__circle_small">
-
             <img
                 class="task-two-reviews__avatar"
                 :src="require(`../../img/${review.avatar}.png`)"
                 alt="avatar"/>
           </div>
         </div>
-
       </div>
 
       <div class="task-two-reviews__name">
@@ -103,7 +101,7 @@ export default {
     user-select: none;
     z-index: 3;
     position: relative;
-    transition: 0.2s;
+    transition: 0.3s;
     width: 100%;
     max-width: 560px;
     height: 240px;

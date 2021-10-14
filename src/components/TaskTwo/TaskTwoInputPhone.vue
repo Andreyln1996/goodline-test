@@ -97,7 +97,7 @@ export default {
 @import "src/assets/style";
 
 .task-two-input-phone {
-  padding: 40px;
+  padding: 40px 0;
   height: 332px;
   max-width: 872px;
   background: #FFFFFF;
@@ -138,7 +138,6 @@ export default {
     text-align: center;
     border: 3px solid #DAE0E5;
     border-radius: 4px;
-    //transition: 0.2s;
     @include roboto_700;
 
     &:focus {

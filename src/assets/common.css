@@ -1,8 +1,12 @@
-html, body {
-  width: 100%;
-  min-height: 100%;
+html{
   min-width: 320px;
+  height: 100%;
   background: #F7F7F7;
+  color: #313334;
+
+}
+body {
+  height: 100%;
 }
 
 input::placeholder {
