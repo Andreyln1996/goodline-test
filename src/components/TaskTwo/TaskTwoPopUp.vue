@@ -17,7 +17,9 @@
                 :src="require(`../../img/pop-up__${option.icon}.svg`)"
                 alt="icon">
           </div>
-          {{ option.text }}
+          <div class="task-two-pop-up__text">
+            {{ option.text }}
+          </div>
         </div>
       </div>
 
@@ -103,7 +105,7 @@ export default {
         },
 
         {
-          text: 'Скачивание/удаление архивных записей',
+          text: 'Скачивание/ удаление архивных записей',
           icon: 'mobile'
         },
 
@@ -194,6 +196,9 @@ export default {
     box-shadow: 0 10px 40px #45AE4D;
   }
 
+  &__text {
+    max-width: 39%;
+  }
 }
 
 .fade-enter-active, .fade-leave-active {
